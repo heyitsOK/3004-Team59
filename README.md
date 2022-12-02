@@ -9,12 +9,12 @@
 | Ishwor Ghimire  | Content Cell  |
 | Janessa Orhiobhe  | 101201685  |
 
-# Updates and Comments:
+## Updates and Comments:
 Osamah:
   - Fixing and updating README.md
   - Creating GUI
 
-# Documentation responsibilities:
+## Documentation responsibilities:
 use case model 
   - janessa
 
@@ -27,8 +27,8 @@ sequence diagram
 traceability matrix 
   - haochen, osamah
 
-# .h Files:
+## .h Files:
 
-# .cpp Files:
+## .cpp Files:
 
-# Test Scenario:
+## Test Scenario:
