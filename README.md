@@ -13,7 +13,7 @@
 | Omar Khan  | 101168124  |
 | Osamah ALQahtaini | 101179283  |
 | Haochen Hou  | 101077553  |
-| Ishwor Ghimire  | Content Cell  |
+| Ishwor Ghimire  | 101211820 | 
 | Janessa Orhiobhe  | 101201685  |
 
 ## <a name = "Updates-and-Comments" ></a>Updates and Comments
