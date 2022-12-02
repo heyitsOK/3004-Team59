@@ -17,10 +17,13 @@ Osamah:
 # Documentation responsibilities:
 use case model 
   - janessa
+
 UML class diagram 
   - omar
+
 sequence diagram 
   - ishwor
+
 traceability matrix 
   - haochen, osamah
 
