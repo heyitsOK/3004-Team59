@@ -2,7 +2,7 @@
 Links: 
 - [Team Members](#Team-Members) 
 - [Updates and Comments](#Updates-and-Comments) 
-- [TO DO](#TO-DO) 
+- [TODO](#TO-DO) 
 - [Documentation responsibilities](#Documentation-responsibilities) 
 - [.h Files](#h-Files) 
 - [.cpp Files](#cpp-Files) 
@@ -21,7 +21,7 @@ Osamah:
   - Fixing and updating README.md
   - Creating GUI
 
-## <a name = "TO-DO" ></a> TO DO:
+## <a name = "TO-DO" ></a> TODO:
 * [x] Set up GitHub for everyone
 * [ ] use case model
 * [ ] UML class diagram
