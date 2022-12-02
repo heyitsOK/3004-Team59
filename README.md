@@ -2,6 +2,7 @@
 Links: 
 - [Team Members](#Team-Members) 
 - [Updates and Comments](#Updates-and-Comments) 
+- [TO DO](#TO-DO) 
 - [Documentation responsibilities](#Documentation-responsibilities) 
 - [.h Files](#h-Files) 
 - [.cpp Files](#cpp-Files) 
@@ -19,6 +20,11 @@ Links:
 Osamah:
   - Fixing and updating README.md
   - Creating GUI
+
+## <a name = "TO-DO" ></a> TO DO:
+* [x] Todo 1
+* [ ] Todo 2
+* [ ] 
 
 ## <a name = "Documentation-responsibilities" ></a>Documentation responsibilities:
 `use case model`
