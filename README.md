@@ -8,3 +8,7 @@
 | Haochen Hou  | 101077553  |
 | Ishwor Ghimire  | Content Cell  |
 | Janessa Orhiobhe  | 101201685  |
+
+#Updates:
+Osamah: 
+  Fixing and updating README.md
