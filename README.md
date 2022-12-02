@@ -2,11 +2,11 @@
 Links: 
 - [Team Members](#Team-Members) 
 - [Updates and Comments](#Updates-and-Comments) 
-- [Documentation responsibilities](#Documentation responsibilities) 
+- [Documentation responsibilities](#Documentation-responsibilities) 
 - [.h Files](#h-Files) 
 - [.cpp Files](#cpp-Files) 
 - [Test Scenario](#Test-Scenario) 
-## Team Members
+## <a name = "Team-Members" ></a>Team Members
 | Student name  | ID number |
 | ------------- | ------------- |
 | Omar Khan  | 101168124  |
@@ -20,7 +20,7 @@ Osamah:
   - Fixing and updating README.md
   - Creating GUI
 
-## Documentation responsibilities:
+## <a name = "Documentation-responsibilities" ></a>Documentation responsibilities:
 `use case model`
   - janessa
 
@@ -34,10 +34,10 @@ Osamah:
   - haochen, osamah
 
 
-## .h Files:
+## <a name = "h-Files" ></a>.h Files:
 
 
-## .cpp Files:
+## <a name = "cpp-Files" ></a>.cpp Files:
 
 
-## Test Scenario:
+## <a name = "Test-Scenario" ></a>Test Scenario:
