@@ -22,9 +22,13 @@ Osamah:
   - Creating GUI
 
 ## <a name = "TO-DO" ></a> TO DO:
-* [x] Todo 1
-* [ ] Todo 2
-* [ ] 
+* [x] Set up GitHub for everyone
+* [ ] use case model
+* [ ] UML class diagram
+* [ ] sequence diagram
+* [ ] GUI
+* [ ] Implementation
+* [ ] traceability matrix
 
 ## <a name = "Documentation-responsibilities" ></a>Documentation responsibilities:
 `use case model`
