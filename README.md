@@ -9,6 +9,7 @@
 | Ishwor Ghimire  | Content Cell  |
 | Janessa Orhiobhe  | 101201685  |
 
-# Updates:
-Osamah: 
-  Fixing and updating README.md
+# Updates and comments:
+Osamah:
+  - Fixing and updating README.md
+  - Creating GUI
