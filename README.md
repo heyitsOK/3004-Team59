@@ -18,13 +18,13 @@ Osamah:
 `use case model` 
   - janessa
 
-UML class diagram 
+`UML class diagram`
   - omar
 
-sequence diagram 
+`sequence diagram`
   - ishwor
 
-traceability matrix 
+`traceability matrix` 
   - haochen, osamah
 
 
