@@ -1,5 +1,5 @@
 # COMP 3004 - Team 59
-Links: 
+# Table of Contents 
 - [Team Members](#Team-Members) 
 - [Updates and Comments](#Updates-and-Comments) 
 - [TODO](#TO-DO) 
@@ -16,12 +16,12 @@ Links:
 | Ishwor Ghimire  | Content Cell  |
 | Janessa Orhiobhe  | 101201685  |
 
-## <a name = "Updates-and-Comments" ></a>Updates and Comments:
+## <a name = "Updates-and-Comments" ></a>Updates and Comments
 Osamah:
   - Fixing and updating README.md
   - Creating GUI
 
-## <a name = "TO-DO" ></a> TODO:
+## <a name = "TO-DO" ></a> TODO
 * [x] Set up GitHub for everyone
 * [ ] use case model
 * [ ] UML class diagram
@@ -30,7 +30,7 @@ Osamah:
 * [ ] Implementation
 * [ ] traceability matrix
 
-## <a name = "Documentation-responsibilities" ></a>Documentation responsibilities:
+## <a name = "Documentation-responsibilities" ></a>Documentation responsibilities
 `use case model`
   - janessa
 
@@ -44,11 +44,11 @@ Osamah:
   - haochen, osamah
 
 
-## <a name = "h-Files" ></a>.h Files:
+## <a name = "h-Files" ></a>.h Files
  - mainwindow.h
 
-## <a name = "cpp-Files" ></a>.cpp Files:
+## <a name = "cpp-Files" ></a>.cpp Files
  - main.cpp
  - mainwindow.cpp
 
-## <a name = "Test-Scenario" ></a>Test Scenario:
+## <a name = "Test-Scenario" ></a>Test Scenario
