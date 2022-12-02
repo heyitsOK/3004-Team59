@@ -1,4 +1,4 @@
-# COMP 3004 - Team59
+# COMP 3004 - Team 59
 
 ## Team Members
 | Student name  | ID number |
