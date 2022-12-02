@@ -1,5 +1,5 @@
 # COMP 3004 - Team 59
-Links: [Updates and Comments](#Team Members) 
+Links: [Go to Updates and Comments](#Team Members) 
 ## Team Members
 | Student name  | ID number |
 | ------------- | ------------- |
