@@ -30,7 +30,7 @@ Osamah:
 * [ ] Implementation
 * [ ] traceability matrix
 
-### <a name = "Documentation-responsibilities" ></a>Documentation Responsibilities
+## <a name = "Documentation-responsibilities" ></a>Documentation Responsibilities
 `use case model`
   - janessa
 
