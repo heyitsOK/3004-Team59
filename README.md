@@ -35,9 +35,10 @@ Osamah:
 
 
 ## <a name = "h-Files" ></a>.h Files:
-
+ - mainwindow.h
 
 ## <a name = "cpp-Files" ></a>.cpp Files:
-
+ - main.cpp
+ - mainwindow.cpp
 
 ## <a name = "Test-Scenario" ></a>Test Scenario:
