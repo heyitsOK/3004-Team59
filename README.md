@@ -15,7 +15,7 @@ Osamah:
   - Creating GUI
 
 ## Documentation responsibilities:
-use case model 
+'use case model' 
   - janessa
 
 UML class diagram 
