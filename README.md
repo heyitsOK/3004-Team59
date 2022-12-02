@@ -1,5 +1,5 @@
 # COMP 3004 - Team 59
-Links: [Go to Real Cool Heading section](##Team Members) 
+Links: [Go to Real Cool Heading section](#Team Members) 
 ## Team Members
 | Student name  | ID number |
 | ------------- | ------------- |
