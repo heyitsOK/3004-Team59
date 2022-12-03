@@ -31,18 +31,21 @@ Osamah:
 * [ ] traceability matrix
 
 ## <a name = "Documentation-responsibilities" ></a>Documentation Responsibilities
-`use case model`
-  - janessa
+- Documentation:
+  `use case model`
+    - janessa
 
-`UML class diagram`
-  - omar
+  `UML class diagram`
+    - omar
 
-`sequence diagram`
-  - ishwor
+  `sequence diagram`
+    - ishwor
 
-`traceability matrix` 
-  - haochen, osamah
-
+  `traceability matrix` 
+    - haochen, osamah
+- Implementation:
+  `GUI`
+    - Osamah
 
 ## <a name = "h-Files" ></a>.h Files
  - mainwindow.h
