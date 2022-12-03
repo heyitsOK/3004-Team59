@@ -3,7 +3,9 @@
 - [Team Members](#Team-Members) 
 - [Updates and Comments](#Updates-and-Comments) 
 - [TODO](#TO-DO) 
-- [Documentation Responsibilities](#Documentation-responsibilities) 
+- [Documentation](#Documentation) 
+  -[Documentation Responsibilities](#Documentation-responsibilities)
+  -[Implementation](#Implementation)
 - [.h Files](#h-Files) 
 - [.cpp Files](#cpp-Files) 
 - [Test Scenario](#Test-Scenario) 
@@ -31,7 +33,7 @@ Osamah:
 * [ ] traceability matrix
 
 ## <a name = "Documentation-responsibilities" ></a>Documentation Responsibilities
-- Documentation:
+<a name = "Documentation" ></a>- Documentation:
 
   `use case model`
     - janessa
@@ -44,7 +46,7 @@ Osamah:
 
   `traceability matrix` 
     - haochen, osamah
-- Implementation:
+<a name = "Implementation" ></a>- Implementation:
   `GUI`
     - Osamah
 
