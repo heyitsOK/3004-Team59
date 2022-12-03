@@ -59,4 +59,4 @@ Osamah:
  - main.cpp
  - mainwindow.cpp
 
-## <a name = "Test-Scenario" ></a>Test Scenario
+## <a name = "Test-Scenario" ></a>Tested scenarios
