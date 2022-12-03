@@ -5,7 +5,7 @@
 - [TODO](#TO-DO) 
 - [Team's Work](#Documentation) 
   * [Documentation Responsibilities](#Documentation-responsibilities)
-  * [Implementation](#Implementation)
+  * [Implementation Responsibilities](#Implementation)
 - [.h Files](#h-Files) 
 - [.cpp Files](#cpp-Files)
 - [Documentation Files](#Documentation-files) 
@@ -48,7 +48,7 @@ Osamah:
   `traceability matrix` 
     - haochen, osamah
     
-- <a name = "Implementation" ></a> Implementation:
+- <a name = "Implementation" ></a> Implementation Responsibilities:
   
   `GUI`
     - Osamah
