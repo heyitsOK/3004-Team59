@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-//m
+#include <QMessageBox>
+#include <QTextStream>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -21,6 +23,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->Hz1000, SIGNAL(pressed()), this, SLOT(Hz1000()));
     connect(ui->Power, SIGNAL(pressed()), this, SLOT(Power()));
     connect(ui->delta, SIGNAL(pressed()), this, SLOT(delta()));
+
+    powerStatus = false;
 }
 
 MainWindow::~MainWindow()
@@ -72,4 +76,44 @@ void MainWindow::Hz1000(){
 }
 void MainWindow::Power(){
     qDebug("Power...");
+    //check if power is on already
+        QTextStream out(stdout);
+        if (powerStatus) {
+            //if power is on already
+            //ask or check whether the button was held for one second of just tapped
+            QMessageBox msgBox;
+            msgBox.setText("Power off or Soft off?");
+            msgBox.setInformativeText("Are you holding the button (power off)?");
+            msgBox.setStandardButtons(QMessageBox::No | QMessageBox::Yes);
+            msgBox.setDefaultButton(QMessageBox::Yes);
+            int ret = msgBox.exec();
+            switch (ret) {
+                case QMessageBox::Yes:
+                    //if it was held we power off
+                    powerOff();
+                    break;
+                case QMessageBox::No:
+                    //if it was tapped then we soft off
+                    softOff();
+                    break;
+            }
+        } else {
+            //if it is not
+            out << "Powering on" << endl;
+            powerStatus = true;
+            //initialize everything
+            //display battery level
+            //set 2 minute timeout
+        }
+}
+
+void MainWindow::powerOff() {
+    QTextStream out(stdout);
+    out << "Powering off" << endl;
+    powerStatus = false;
+}
+
+void MainWindow::softOff() {
+    QTextStream out(stdout);
+    out << "Soft off" << endl;
 }

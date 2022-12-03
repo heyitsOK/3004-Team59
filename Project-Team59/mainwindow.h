@@ -17,6 +17,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    bool powerStatus;
 
 
 private slots:
@@ -35,5 +36,7 @@ private slots:
     void Beta2();
     void Hz1000();
     void Power();
+    void powerOff();
+    void softOff();
 };
 #endif // MAINWINDOW_H
