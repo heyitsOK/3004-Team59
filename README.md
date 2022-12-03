@@ -32,6 +32,7 @@ Osamah:
 
 ## <a name = "Documentation-responsibilities" ></a>Documentation Responsibilities
 - Documentation:
+
   `use case model`
     - janessa
 
