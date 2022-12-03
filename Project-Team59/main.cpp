@@ -10,7 +10,3 @@ int main(int argc, char *argv[])
     return a.exec();
 }
 
-//Omar new update
-//Osamah new update
-//try it for the secound time, nice I can add and remove heheheheh, meow
-//Test test
