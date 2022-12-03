@@ -28,7 +28,7 @@ Osamah:
 * [ ] use case model
 * [ ] UML class diagram
 * [ ] sequence diagram
-* [ ] GUI
+* [x] GUI
 * [ ] Implementation
 * [ ] traceability matrix
 
