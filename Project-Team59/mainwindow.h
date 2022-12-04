@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QDebug>
+#include <QString>
+#include <QPushButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,8 +23,8 @@ private:
 
 
 private slots:
-    void goUp();
-    void goDown();
+    int goUp(int strnum);
+    int goDown(int strnum);
     void min20();
     void min45();
     void hrs3();

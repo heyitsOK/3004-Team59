@@ -1,13 +1,18 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-//m
+#include <QPushButton>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    connect(ui->Up, SIGNAL(pressed()), this, SLOT(goUp()));
-    connect(ui->Down, SIGNAL(pressed()), this, SLOT(goDown()));
+
+    int strnum = 1;
+    ui->Strength->display(strnum);
+    connect(ui->Up, &QPushButton::clicked, this, &MainWindow::goUp);
+    connect(ui->Down, &QPushButton::clicked, this, &MainWindow::goDown);
+
     connect(ui->min20, SIGNAL(pressed()), this, SLOT(min20()));
     connect(ui->Min45, SIGNAL(pressed()), this, SLOT(min45()));
     connect(ui->hrs3, SIGNAL(pressed()), this, SLOT(hrs3()));
@@ -28,12 +33,33 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::goUp() {
-    qDebug("Num going up...");
+int MainWindow::goUp(int strnum) {
+    if(strnum < 8)
+    {
+        strnum = strnum + 1;
+        qDebug() << strnum << endl;
+        ui->Strength->display(strnum);
+        return strnum;
+    }
+    else
+    {
+        qDebug("Mixmun");
+    }
 }
-void MainWindow::goDown() {
-    qDebug("Num going down...");
+
+int MainWindow::goDown(int strnum) {
+    if(strnum > 2)
+    {
+        strnum = strnum - 1;
+        ui->Strength->display(strnum);
+        return strnum;
+    }
+    else
+    {
+        qDebug("Minimun");
+    }
 }
+
 void MainWindow::min20(){
     qDebug("20 minutes on...");
 }
