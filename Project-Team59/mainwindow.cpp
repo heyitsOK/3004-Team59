@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    int strnum = 1;// The defult strength is 1 when the machine is turned on.
+    strnum = 1;// The defult strength is 1 when the machine is turned on.
     ui->Strength->display(strnum);// Display the number of defult strength
     connect(ui->Up, &QPushButton::clicked, this, &MainWindow::goUp);
     connect(ui->Down, &QPushButton::clicked, this, &MainWindow::goDown);
@@ -33,8 +33,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-int MainWindow::goUp(int strnum/*transport the defult value as a variable*/) {
-    qDebug() << strnum << endl;// I don't know why it shows 0 every time when i click the button
+int MainWindow::goUp() {
     if(strnum < 8)
     {
         strnum = strnum + 1;
@@ -43,13 +42,12 @@ int MainWindow::goUp(int strnum/*transport the defult value as a variable*/) {
     }
     else
     {
-        qDebug("Mixmun");
+        qDebug("Maximum");
     }
 }
 
-int MainWindow::goDown(int strnum/*transport the defult value as a variable*/) {
-    qDebug() << strnum << endl;//the down button has same problem with up button
-    if(strnum > 2)
+int MainWindow::goDown() {
+    if(strnum > 1)
     {
         strnum = strnum - 1;
         ui->Strength->display(strnum);
@@ -57,7 +55,7 @@ int MainWindow::goDown(int strnum/*transport the defult value as a variable*/) {
     }
     else
     {
-        qDebug("Minimun");
+        qDebug("Minimum");
     }
 }
 

@@ -20,11 +20,12 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    int strnum;
 
 
 private slots:
-    int goUp(int strnum);
-    int goDown(int strnum);
+    int goUp();
+    int goDown();
     void min20();
     void min45();
     void hrs3();
