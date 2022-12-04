@@ -2,14 +2,19 @@
 #include "ui_mainwindow.h"
 #include <QMessageBox>
 #include <QTextStream>
+#include <QPushButton>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    connect(ui->Up, SIGNAL(pressed()), this, SLOT(goUp()));
-    connect(ui->Down, SIGNAL(pressed()), this, SLOT(goDown()));
+
+    strnum = 1;// The defult strength is 1 when the machine is turned on.
+    ui->Strength->display(strnum);// Display the number of defult strength
+    connect(ui->Up, &QPushButton::clicked, this, &MainWindow::goUp);
+    connect(ui->Down, &QPushButton::clicked, this, &MainWindow::goDown);
+
     connect(ui->min20, SIGNAL(pressed()), this, SLOT(min20()));
     connect(ui->Min45, SIGNAL(pressed()), this, SLOT(min45()));
     connect(ui->hrs3, SIGNAL(pressed()), this, SLOT(hrs3()));
@@ -32,12 +37,32 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::goUp() {
-    qDebug("Num going up...");
+int MainWindow::goUp() {
+    if(strnum < 8)
+    {
+        strnum = strnum + 1;
+        ui->Strength->display(strnum);
+        return strnum;
+    }
+    else
+    {
+        qDebug("Maximum");
+    }
 }
-void MainWindow::goDown() {
-    qDebug("Num going down...");
+
+int MainWindow::goDown() {
+    if(strnum > 1)
+    {
+        strnum = strnum - 1;
+        ui->Strength->display(strnum);
+        return strnum;
+    }
+    else
+    {
+        qDebug("Minimum");
+    }
 }
+
 void MainWindow::min20(){
     qDebug("20 minutes on...");
 }

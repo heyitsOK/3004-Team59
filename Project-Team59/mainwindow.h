@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QDebug>
+#include <QString>
+#include <QPushButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,11 +21,12 @@ public:
 private:
     Ui::MainWindow *ui;
     bool powerStatus;
+    int strnum;
 
 
 private slots:
-    void goUp();
-    void goDown();
+    int goUp();
+    int goDown();
     void min20();
     void min45();
     void hrs3();

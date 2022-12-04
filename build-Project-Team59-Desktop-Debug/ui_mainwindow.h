@@ -28,7 +28,7 @@ public:
     QListWidget *listWidget;
     QListWidget *listWidget_2;
     QPushButton *Power;
-    QLCDNumber *lcdNumber;
+    QLCDNumber *Strength;
     QPushButton *Up;
     QPushButton *Down;
     QPushButton *min20;
@@ -63,9 +63,9 @@ public:
         Power = new QPushButton(centralwidget);
         Power->setObjectName(QString::fromUtf8("Power"));
         Power->setGeometry(QRect(520, 410, 121, 71));
-        lcdNumber = new QLCDNumber(centralwidget);
-        lcdNumber->setObjectName(QString::fromUtf8("lcdNumber"));
-        lcdNumber->setGeometry(QRect(50, 440, 151, 91));
+        Strength = new QLCDNumber(centralwidget);
+        Strength->setObjectName(QString::fromUtf8("Strength"));
+        Strength->setGeometry(QRect(50, 440, 151, 91));
         Up = new QPushButton(centralwidget);
         Up->setObjectName(QString::fromUtf8("Up"));
         Up->setGeometry(QRect(250, 440, 80, 25));

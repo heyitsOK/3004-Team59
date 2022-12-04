@@ -3,11 +3,12 @@
 - [Team Members](#Team-Members) 
 - [Updates and Comments](#Updates-and-Comments) 
 - [TODO](#TO-DO) 
-- [Documentation](#Documentation) 
+- [Team's Work](#Documentation) 
   * [Documentation Responsibilities](#Documentation-responsibilities)
-  * [Implementation](#Implementation)
+  * [Implementation Responsibilities](#Implementation)
 - [.h Files](#h-Files) 
-- [.cpp Files](#cpp-Files) 
+- [.cpp Files](#cpp-Files)
+- [Documentation Files](#Documentation-files) 
 - [Test Scenario](#Test-Scenario) 
 ## <a name = "Team-Members" ></a>Team Members
 | Student name  | ID number |
@@ -58,5 +59,7 @@ Osamah:
 ## <a name = "cpp-Files" ></a>.cpp Files
  - main.cpp
  - mainwindow.cpp
+
+## <a name = "Documentation files" ></a>Documentation Files
 
 ## <a name = "Test-Scenario" ></a>Tested scenarios

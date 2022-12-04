@@ -47,7 +47,7 @@
      <string>Power</string>
     </property>
    </widget>
-   <widget class="QLCDNumber" name="lcdNumber">
+   <widget class="QLCDNumber" name="Strength">
     <property name="geometry">
      <rect>
       <x>50</x>
