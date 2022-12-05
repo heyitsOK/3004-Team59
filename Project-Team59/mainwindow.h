@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QString>
 #include <QPushButton>
+#include <QElapsedTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,6 +23,9 @@ private:
     Ui::MainWindow *ui;
     bool powerStatus;
     int strnum;
+    bool activeSession;
+    QElapsedTimer elapsed_timer;
+    void toggleUI(bool onOrOff);
 
 
 private slots:
@@ -42,5 +46,6 @@ private slots:
     void Power();
     void powerOff();
     void softOff();
+    void timeout();
 };
 #endif // MAINWINDOW_H

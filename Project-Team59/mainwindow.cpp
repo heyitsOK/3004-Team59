@@ -3,6 +3,7 @@
 #include <QMessageBox>
 #include <QTextStream>
 #include <QPushButton>
+#include <QTimer>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -10,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    strnum = 1;// The defult strength is 1 when the machine is turned on.
+    strnum = 0;// The defult strength is 0 when the machine is off.
     ui->Strength->display(strnum);// Display the number of defult strength
     connect(ui->Up, &QPushButton::clicked, this, &MainWindow::goUp);
     connect(ui->Down, &QPushButton::clicked, this, &MainWindow::goDown);
@@ -30,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->delta, SIGNAL(pressed()), this, SLOT(delta()));
 
     powerStatus = false;
+    activeSession = false;
 }
 
 MainWindow::~MainWindow()
@@ -38,6 +40,9 @@ MainWindow::~MainWindow()
 }
 
 int MainWindow::goUp() {
+    if (!powerStatus) {
+        return 0;
+    }
     if(strnum < 8)
     {
         strnum = strnum + 1;
@@ -51,6 +56,9 @@ int MainWindow::goUp() {
 }
 
 int MainWindow::goDown() {
+    if (!powerStatus) {
+        return 0;
+    }
     if(strnum > 1)
     {
         strnum = strnum - 1;
@@ -106,7 +114,7 @@ void MainWindow::Power(){
         if (powerStatus) {
             //if power is on already
             //ask or check whether the button was held for one second of just tapped
-            QMessageBox msgBox;
+            /*QMessageBox msgBox;
             msgBox.setText("Power off or Soft off?");
             msgBox.setInformativeText("Are you holding the button (power off)?");
             msgBox.setStandardButtons(QMessageBox::No | QMessageBox::Yes);
@@ -120,25 +128,59 @@ void MainWindow::Power(){
                 case QMessageBox::No:
                     //if it was tapped then we soft off
                     softOff();
-                    break;
+                    break;*/
+            if (activeSession) {
+                softOff();
+            } else {
+                powerOff();
             }
         } else {
             //if it is not
             out << "Powering on" << endl;
             powerStatus = true;
             //initialize everything
+            strnum = 1; //default strength is 1 when machine is turned on
+            toggleUI(true); //pass true to this function to initialize the UI
             //display battery level
             //set 2 minute timeout
+            elapsed_timer.start();
+            QTimer* timer = new QTimer(this);
+            connect(timer, SIGNAL(timeout()), this, SLOT(timeout()));
+            timer->start(1000);
         }
+}
+
+void MainWindow::timeout() {
+    QTextStream out(stdout);
+    if (elapsed_timer.elapsed() > 120000 && powerStatus) {
+        elapsed_timer.restart();
+        if (activeSession) {
+            out << "Session active no timeout necessary" << endl;
+        } else {
+            out << "No session selected before time out." << endl;
+            powerOff();
+        }
+    }
+}
+
+void MainWindow::toggleUI(bool onOrOff) {
+    if (onOrOff) {
+        ui->Strength->display(strnum);
+    } else {
+        ui->Strength->display(0);
+    }
 }
 
 void MainWindow::powerOff() {
     QTextStream out(stdout);
     out << "Powering off" << endl;
+    toggleUI(false); //pass false to this function to set UI to off defaults
     powerStatus = false;
 }
 
 void MainWindow::softOff() {
     QTextStream out(stdout);
     out << "Soft off" << endl;
+    //bring intensity down to 1 slowly
+    //run powerOff() function
 }
