@@ -23,6 +23,9 @@
 Osamah:
   - Fixing and updating README.md
   - Creating GUI
+Omar:
+  - Implemented power on/off, and soft on/off feature
+  - Set session timeout when not in an active session
 
 ## <a name = "TO-DO" ></a> TODO
 * [x] Set up GitHub for everyone

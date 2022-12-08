@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->Power, SIGNAL(pressed()), this, SLOT(Power()));
     connect(ui->delta, SIGNAL(pressed()), this, SLOT(delta()));
 
-    powerStatus = false;
+    powerStatus = false; //the default power status is false because the power is off when the program starts
     activeSession = false;
 }
 
