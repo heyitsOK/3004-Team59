@@ -72,39 +72,75 @@ int MainWindow::goDown() {
 }
 
 void MainWindow::min20(){
+    if (!powerStatus) {
+        return;
+    }
     qDebug("20 minutes on...");
 }
 void MainWindow::min45(){
+    if (!powerStatus) {
+        return;
+    }
     qDebug("45 minutes on...");
 }
 void MainWindow::hrs3(){
+    if (!powerStatus) {
+        return;
+    }
     qDebug("3 hours on...");
 }
 void MainWindow::UD(){
+    if (!powerStatus) {
+        return;
+    }
     qDebug("User designed on...");
 }
 void MainWindow::MET(){
+    if (!powerStatus) {
+        return;
+    }
     qDebug("Microcurrent Electrical Therapy on...");
 }
 void MainWindow::SD(){
+    if (!powerStatus) {
+        return;
+    }
     qDebug("Sub Delta...");
 }
 void MainWindow::delta(){
+    if (!powerStatus) {
+        return;
+    }
     qDebug("Delta on...");
 }
 void MainWindow::Theta(){
+    if (!powerStatus) {
+        return;
+    }
     qDebug("Theta on...");
 }
 void MainWindow::Alpha(){
+    if (!powerStatus) {
+        return;
+    }
     qDebug("Alpha on...");
 }
 void MainWindow::Beta1(){
+    if (!powerStatus) {
+        return;
+    }
     qDebug("Beta 1 no...");
 }
 void MainWindow::Beta2(){
+    if (!powerStatus) {
+        return;
+    }
     qDebug("Beta 2 on...");
 }
 void MainWindow::Hz1000(){
+    if (!powerStatus) {
+        return;
+    }
     qDebug("1000 Hz on...");
 }
 void MainWindow::Power(){
