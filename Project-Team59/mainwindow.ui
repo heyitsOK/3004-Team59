@@ -43,6 +43,9 @@
       <height>71</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="text">
      <string>Power</string>
     </property>
@@ -83,149 +86,6 @@
      <string>Down</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="min20">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>60</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>20 min</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Min45">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>110</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>45 min</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="hrs3">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>160</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>3 hrs</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="UD">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>220</y>
-      <width>221</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>User designed</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="MET">
-    <property name="geometry">
-     <rect>
-      <x>420</x>
-      <y>110</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>MET</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="theta">
-    <property name="geometry">
-     <rect>
-      <x>600</x>
-      <y>250</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Theta</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="SD">
-    <property name="geometry">
-     <rect>
-      <x>540</x>
-      <y>110</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>SD</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Beta2">
-    <property name="geometry">
-     <rect>
-      <x>660</x>
-      <y>190</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Beta 2</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Beta1">
-    <property name="geometry">
-     <rect>
-      <x>540</x>
-      <y>190</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Beta 1</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Alpha">
-    <property name="geometry">
-     <rect>
-      <x>420</x>
-      <y>190</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Alpha</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Hz1000">
-    <property name="geometry">
-     <rect>
-      <x>480</x>
-      <y>250</y>
-      <width>81</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>1000 Hz</string>
-    </property>
-   </widget>
    <widget class="QLCDNumber" name="lcdNumber_2">
     <property name="geometry">
      <rect>
@@ -236,18 +96,151 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="delta">
+   <widget class="QGroupBox" name="grpSession">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>110</y>
-      <width>81</width>
-      <height>21</height>
+      <x>80</x>
+      <y>40</y>
+      <width>231</width>
+      <height>201</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Delta</string>
+    <property name="title">
+     <string>Session Groups</string>
     </property>
+    <widget class="QRadioButton" name="rdb20">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>40</y>
+       <width>96</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>20 Minutes</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="rdb45">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>80</y>
+       <width>96</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>45 Minutes</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="rdbUserDes">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>120</y>
+       <width>121</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>User Desgnated:</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="spbMinutes">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>150</y>
+       <width>45</width>
+       <height>26</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="grpTypes">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>30</y>
+      <width>301</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Session Types</string>
+    </property>
+    <widget class="QRadioButton" name="rdbMET">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>40</y>
+       <width>51</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>MET</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="rdbSubDelta">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>70</y>
+       <width>81</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Sub-Delta</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="rdbDelta">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>100</y>
+       <width>61</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Delta</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="rdbTheta">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>130</y>
+       <width>96</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Theta</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnSelect">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>170</y>
+       <width>80</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Select</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

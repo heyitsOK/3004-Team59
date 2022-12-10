@@ -12,26 +12,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     strnum = 0;// The defult strength is 0 when the machine is off.
-    ui->Strength->display(strnum);// Display the number of defult strength
+
     connect(ui->Up, &QPushButton::clicked, this, &MainWindow::goUp);
     connect(ui->Down, &QPushButton::clicked, this, &MainWindow::goDown);
 
-    connect(ui->min20, SIGNAL(pressed()), this, SLOT(min20()));
-    connect(ui->Min45, SIGNAL(pressed()), this, SLOT(min45()));
-    connect(ui->hrs3, SIGNAL(pressed()), this, SLOT(hrs3()));
-    connect(ui->UD, SIGNAL(pressed()), this, SLOT(UD()));
-    connect(ui->MET, SIGNAL(pressed()), this, SLOT(MET()));
-    connect(ui->SD, SIGNAL(pressed()), this, SLOT(SD()));
-    connect(ui->theta, SIGNAL(pressed()), this, SLOT(Theta()));
-    connect(ui->Alpha, SIGNAL(pressed()), this, SLOT(Alpha()));
-    connect(ui->Beta1, SIGNAL(pressed()), this, SLOT(Beta1()));
-    connect(ui->Beta2, SIGNAL(pressed()), this, SLOT(Beta2()));
-    connect(ui->Hz1000, SIGNAL(pressed()), this, SLOT(Hz1000()));
     connect(ui->Power, SIGNAL(pressed()), this, SLOT(Power()));
-    connect(ui->delta, SIGNAL(pressed()), this, SLOT(delta()));
 
     powerStatus = false; //the default power status is false because the power is off when the program starts
     activeSession = false;
+    sessionSelect = false;
+    toggleUI(false);
 }
 
 MainWindow::~MainWindow()
@@ -71,78 +61,6 @@ int MainWindow::goDown() {
     }
 }
 
-void MainWindow::min20(){
-    if (!powerStatus) {
-        return;
-    }
-    qDebug("20 minutes on...");
-}
-void MainWindow::min45(){
-    if (!powerStatus) {
-        return;
-    }
-    qDebug("45 minutes on...");
-}
-void MainWindow::hrs3(){
-    if (!powerStatus) {
-        return;
-    }
-    qDebug("3 hours on...");
-}
-void MainWindow::UD(){
-    if (!powerStatus) {
-        return;
-    }
-    qDebug("User designed on...");
-}
-void MainWindow::MET(){
-    if (!powerStatus) {
-        return;
-    }
-    qDebug("Microcurrent Electrical Therapy on...");
-}
-void MainWindow::SD(){
-    if (!powerStatus) {
-        return;
-    }
-    qDebug("Sub Delta...");
-}
-void MainWindow::delta(){
-    if (!powerStatus) {
-        return;
-    }
-    qDebug("Delta on...");
-}
-void MainWindow::Theta(){
-    if (!powerStatus) {
-        return;
-    }
-    qDebug("Theta on...");
-}
-void MainWindow::Alpha(){
-    if (!powerStatus) {
-        return;
-    }
-    qDebug("Alpha on...");
-}
-void MainWindow::Beta1(){
-    if (!powerStatus) {
-        return;
-    }
-    qDebug("Beta 1 no...");
-}
-void MainWindow::Beta2(){
-    if (!powerStatus) {
-        return;
-    }
-    qDebug("Beta 2 on...");
-}
-void MainWindow::Hz1000(){
-    if (!powerStatus) {
-        return;
-    }
-    qDebug("1000 Hz on...");
-}
 void MainWindow::Power(){
     qDebug("Power...");
     //check if power is on already
@@ -150,8 +68,8 @@ void MainWindow::Power(){
         if (powerStatus) {
             //if power is on already
             //ask or check whether the button was held for one second of just tapped
-            /*QMessageBox msgBox;
-            msgBox.setText("Power off or Soft off?");
+            QMessageBox msgBox;
+            msgBox.setText("Power off or Selecting a Session?");
             msgBox.setInformativeText("Are you holding the button (power off)?");
             msgBox.setStandardButtons(QMessageBox::No | QMessageBox::Yes);
             msgBox.setDefaultButton(QMessageBox::Yes);
@@ -159,16 +77,18 @@ void MainWindow::Power(){
             switch (ret) {
                 case QMessageBox::Yes:
                     //if it was held we power off
-                    powerOff();
+                    if (activeSession) {
+                        softOff();
+                    } else {
+                        powerOff();
+                    }
                     break;
                 case QMessageBox::No:
                     //if it was tapped then we soft off
-                    softOff();
-                    break;*/
-            if (activeSession) {
-                softOff();
-            } else {
-                powerOff();
+                    out << "Selecting a session" << endl;
+                    sessionSelect = true;
+
+                    break;
             }
         } else {
             //if it is not
@@ -202,8 +122,20 @@ void MainWindow::timeout() {
 void MainWindow::toggleUI(bool onOrOff) {
     if (onOrOff) {
         ui->Strength->display(strnum);
+        ui->Power->setStyleSheet("border: 5px solid rgb(32, 74, 135);");
+        ui->grpSession->setEnabled(true);
+        ui->rdb20->setEnabled(true); //not sure why this is necessary but this radio button stays disabled without it
+        ui->spbMinutes->setEnabled(false);
+        ui->grpTypes->setEnabled(true);
+        ui->Up->setEnabled(true);
+        ui->Down->setEnabled(true);
     } else {
         ui->Strength->display(0);
+        ui->Power->setStyleSheet("");
+        ui->grpSession->setEnabled(false);
+        ui->grpTypes->setEnabled(false);
+        ui->Up->setEnabled(false);
+        ui->Down->setEnabled(false);
     }
 }
 
@@ -219,4 +151,45 @@ void MainWindow::softOff() {
     out << "Soft off" << endl;
     //bring intensity down to 1 slowly
     //run powerOff() function
+}
+
+void MainWindow::on_rdbUserDes_toggled(bool checked)
+{
+    ui->spbMinutes->setEnabled(checked);
+}
+
+void MainWindow::on_btnSelect_released()
+{
+    QTextStream out(stdout);
+    int group = 0;
+    int ud = 0;
+    int type = 0;
+    if (ui->rdb20->isChecked()) {
+        group = 1;
+    } else if (ui->rdb45->isChecked()) {
+        group = 2;
+    } else if (ui->rdbUserDes->isChecked()){
+        group = 3;
+        ud = ui->spbMinutes->value();
+    }
+    if (ui->rdbMET->isChecked()) {
+        type = 1;
+    } else if (ui->rdbSubDelta->isChecked()) {
+        type = 2;
+    } else if (ui->rdbDelta->isChecked()) {
+        type = 3;
+    } else if (ui->rdbTheta->isChecked()) {
+        type = 4;
+    }
+    if (group == 0 || type == 0) {
+        QMessageBox error;
+        error.setText("Make sure you select the session group and session type before pressing the select button.");
+        error.exec();
+        return;
+    }
+    out << "The session group is: " << group << endl;
+    out << "The session type is: " << type << endl;
+    if (ud != 0 || group == 3) {
+        out << "The user designated value is: " << ud << endl;
+    }
 }

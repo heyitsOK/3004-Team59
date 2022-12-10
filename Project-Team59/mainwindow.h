@@ -24,6 +24,7 @@ private:
     bool powerStatus;
     int strnum;
     bool activeSession;
+    bool sessionSelect;
     QElapsedTimer elapsed_timer;
     void toggleUI(bool onOrOff);
 
@@ -31,21 +32,11 @@ private:
 private slots:
     int goUp();
     int goDown();
-    void min20();
-    void min45();
-    void hrs3();
-    void UD();
-    void MET();
-    void SD();
-    void delta();
-    void Theta();
-    void Alpha();
-    void Beta1();
-    void Beta2();
-    void Hz1000();
     void Power();
     void powerOff();
     void softOff();
     void timeout();
+    void on_rdbUserDes_toggled(bool checked);
+    void on_btnSelect_released();
 };
 #endif // MAINWINDOW_H
