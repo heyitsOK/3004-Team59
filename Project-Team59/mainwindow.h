@@ -28,7 +28,8 @@ private:
     QElapsedTimer elapsed_timer;
     QElapsedTimer session_timer;
     void toggleUI(bool onOrOff);
-
+    void OperationTime(int T);
+    void group_show(int G);
 
 private slots:
     int goUp();
@@ -40,5 +41,6 @@ private slots:
     void sessionTimeout();
     void on_rdbUserDes_toggled(bool checked);
     void on_btnSelect_released();
+    int gischecked();
 };
 #endif // MAINWINDOW_H

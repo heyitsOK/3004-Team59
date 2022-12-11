@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QTimer>
 #include <unistd.h>
+#include <QElapsedTimer>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -12,11 +13,15 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    strnum = 0;// The defult strength is 0 when the machine is off.
     currentSessionMinutes = 0;
 
+    strnum = gischecked();//default strength is 0, it will be 1 when machine is turned on and a group is selected
     connect(ui->Up, &QPushButton::clicked, this, &MainWindow::goUp);
     connect(ui->Down, &QPushButton::clicked, this, &MainWindow::goDown);
+
+    connect(ui->rdb20, &QPushButton::clicked, this, &MainWindow::gischecked);
+    connect(ui->rdb45, &QPushButton::clicked, this, &MainWindow::gischecked);
+    connect(ui->rdbUserDes, &QPushButton::clicked, this, &MainWindow::gischecked);
 
     connect(ui->Power, SIGNAL(pressed()), this, SLOT(Power()));
 
@@ -30,12 +35,33 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+int MainWindow::gischecked()
+{
+    if (ui->rdb20->isChecked() == true || ui->rdb45->isChecked() == true || ui->rdbUserDes->isChecked() == true)
+    {
+        strnum = 1;
+        ui->Strength->display(strnum);
+        return strnum;
+    }
+    else
+    {
+        strnum = 0;
+        ui->Strength->display(strnum);
+        return strnum;
+    }
+}
+
 int MainWindow::goUp() {
     if (!powerStatus) {
         return 0;
     }
     if(strnum < 8)
     {
+        if(strnum == 0 )
+        {
+            qDebug("Please chose the group firstly");
+            return 0;
+        }
         strnum = strnum + 1;
         ui->Strength->display(strnum);
         return strnum;
@@ -50,15 +76,22 @@ int MainWindow::goDown() {
     if (!powerStatus) {
         return 0;
     }
-    if(strnum > 1)
+    if(strnum != 0)
     {
-        strnum = strnum - 1;
-        ui->Strength->display(strnum);
-        return strnum;
+        if(strnum > 1)
+        {
+            strnum = strnum - 1;
+            ui->Strength->display(strnum);
+            return strnum;
+        }
+        else {
+            qDebug("Minimum");
+        }
     }
     else
     {
-        qDebug("Minimum");
+        qDebug("Please chose the group firstly");
+        return 0;
     }
 }
 
@@ -95,7 +128,6 @@ void MainWindow::Power(){
             out << "Powering on" << endl;
             //initialize everything
             powerStatus = true;
-            strnum = 1; //default strength is 1 when machine is turned on
             toggleUI(true); //pass true to this function to initialize the UI
             //display battery level
 
@@ -140,11 +172,16 @@ void MainWindow::toggleUI(bool onOrOff) {
     }
 }
 
+void MainWindow::group_show(int G)
+{
+    ui->groups->display(G);
+}
+
 void MainWindow::powerOff() {
     QTextStream out(stdout);
     out << "Powering off" << endl;
     toggleUI(false); //pass false to this function to set UI to off defaults
-    powerStatus = false;
+    powerStatus = false;out << "The strength is: " << strnum << endl;
     activeSession = false;
 }
 
@@ -152,7 +189,7 @@ void MainWindow::softOff() {
     QTextStream out(stdout);
     out << "Soft off" << endl;
     //bring intensity down to 1 slowly
-    for (;strnum > 1; strnum--) {
+    for (;strnum >= 1; strnum--) {
         sleep(1);
         out << "Intensity: " << strnum << endl;
 
@@ -166,20 +203,28 @@ void MainWindow::on_rdbUserDes_toggled(bool checked)
     ui->spbMinutes->setEnabled(checked);
 }
 
+
+
 void MainWindow::on_btnSelect_released()
 {
     QTextStream out(stdout);
     int group = 0;
     int ud = 0;
     int type = 0;
+
     if (ui->rdb20->isChecked()) {
         group = 20;
+        group_show(group);
     } else if (ui->rdb45->isChecked()) {
         group = 45;
+        group_show(group);
     } else if (ui->rdbUserDes->isChecked()){
-        group = ui->spbMinutes->value();;
+        group = (ui->spbMinutes->value())*60;
         ud = ui->spbMinutes->value();
+        group_show(group);
     }
+
+
     if (ui->rdbMET->isChecked()) {
         type = 1;
     } else if (ui->rdbSubDelta->isChecked()) {
@@ -196,28 +241,38 @@ void MainWindow::on_btnSelect_released()
         return;
     }
 
+    if (group != 0 || type != 0) {
+        qDebug("It will start after 5 seconds...");
+    }
+
+
     //set activeSession to true
     activeSession = true;
     switch (type) {
     case 1:
         out << "MET running for " << group << " minutes." << endl;
         out << "0.5-3 Hz, short pulses." << endl;
+        out << "The strength is: " << strnum << endl;
         break;
     case 2:
         out << "Sub-Delta running for " << group << " minutes." << endl;
         out << "0.5-3 Hz, 50% duty cycle pulses" << endl;
+        out << "The strength is: " << strnum << endl;
         break;
     case 3:
         out << "Delta running for " << group << " minutes." << endl;
         out << "2.5-5 Hz" << endl;
+        out << "The strength is: " << strnum << endl;
         break;
     case 4:
         out << "Theta running for " << group << " minutes." << endl;
         out << "6-8 Hz" << endl;
+        out << "The strength is: " << strnum << endl;
         break;
     default:
         break;
     }
+
     currentSessionMinutes = group;
     elapsed_timer.restart();
     ui->grpSession->setEnabled(false);
@@ -231,8 +286,11 @@ void MainWindow::on_btnSelect_released()
 
 void MainWindow::sessionTimeout() {
     QTextStream out(stdout);
+    int a = 0;
     if (session_timer.elapsed() > currentSessionMinutes * 60000 && activeSession && powerStatus) {
         session_timer.restart();
+        a++;
+        out << a << endl;
         out << "Session complete." << endl;
         softOff();
     }

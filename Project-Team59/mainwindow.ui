@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QListWidget" name="listWidget">
+   <widget class="QListWidget" name="group_check">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -86,7 +86,7 @@
      <string>Down</string>
     </property>
    </widget>
-   <widget class="QLCDNumber" name="lcdNumber_2">
+   <widget class="QLCDNumber" name="groups">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -102,9 +102,9 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>70</x>
       <y>40</y>
-      <width>231</width>
+      <width>261</width>
       <height>201</height>
      </rect>
     </property>
@@ -156,8 +156,8 @@
     <widget class="QSpinBox" name="spbMinutes">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>150</y>
+       <x>170</x>
+       <y>120</y>
        <width>45</width>
        <height>26</height>
       </rect>
