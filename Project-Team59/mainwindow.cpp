@@ -25,6 +25,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->Power, SIGNAL(pressed()), this, SLOT(Power()));
 
+    connect(ui->btnSelect, &QPushButton::clicked, this, &MainWindow::cd_num);
+    cdnum = new QTimer(this);
+    cdnum->setInterval(1000);
+    currvalue = 6;
+    connect(cdnum, &QTimer::timeout, this, &MainWindow::cdTimeOut);
+
     powerStatus = false; //the default power status is false because the power is off when the program starts
     activeSession = false;
     toggleUI(false);
@@ -48,6 +54,25 @@ int MainWindow::gischecked()
         strnum = 0;
         ui->Strength->display(strnum);
         return strnum;
+    }
+}
+
+void MainWindow::cd_num()
+{
+    cdnum->start();
+}
+
+
+int MainWindow::cdTimeOut()
+{
+    if(currvalue > 1)
+    {
+        currvalue = currvalue - 1;
+        qDebug() << currvalue << endl;
+        return currvalue;
+    }else {
+        qDebug("it will start...");
+        cdnum->stop();
     }
 }
 
@@ -130,7 +155,6 @@ void MainWindow::Power(){
             powerStatus = true;
             toggleUI(true); //pass true to this function to initialize the UI
             //display battery level
-
             //set 2 minute timeout
             elapsed_timer.start();
             QTimer* timer = new QTimer(this);
@@ -286,11 +310,8 @@ void MainWindow::on_btnSelect_released()
 
 void MainWindow::sessionTimeout() {
     QTextStream out(stdout);
-    int a = 0;
     if (session_timer.elapsed() > currentSessionMinutes * 60000 && activeSession && powerStatus) {
         session_timer.restart();
-        a++;
-        out << a << endl;
         out << "Session complete." << endl;
         softOff();
     }

@@ -25,8 +25,11 @@ private:
     int strnum;
     bool activeSession;
     int currentSessionMinutes;
+    int battery_num;
+    int currvalue;
     QElapsedTimer elapsed_timer;
     QElapsedTimer session_timer;
+    QTimer *cdnum;
     void toggleUI(bool onOrOff);
     void OperationTime(int T);
     void group_show(int G);
@@ -42,5 +45,7 @@ private slots:
     void on_rdbUserDes_toggled(bool checked);
     void on_btnSelect_released();
     int gischecked();
+    void cd_num();
+    int cdTimeOut();
 };
 #endif // MAINWINDOW_H
