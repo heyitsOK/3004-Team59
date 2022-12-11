@@ -4,6 +4,7 @@
 #include <QTextStream>
 #include <QPushButton>
 #include <QTimer>
+#include <unistd.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -12,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     strnum = 0;// The defult strength is 0 when the machine is off.
+    currentSessionMinutes = 0;
 
     connect(ui->Up, &QPushButton::clicked, this, &MainWindow::goUp);
     connect(ui->Down, &QPushButton::clicked, this, &MainWindow::goDown);
@@ -20,7 +22,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     powerStatus = false; //the default power status is false because the power is off when the program starts
     activeSession = false;
-    sessionSelect = false;
     toggleUI(false);
 }
 
@@ -62,42 +63,42 @@ int MainWindow::goDown() {
 }
 
 void MainWindow::Power(){
-    qDebug("Power...");
     //check if power is on already
         QTextStream out(stdout);
         if (powerStatus) {
             //if power is on already
-            //ask or check whether the button was held for one second of just tapped
-            QMessageBox msgBox;
-            msgBox.setText("Power off or Selecting a Session?");
-            msgBox.setInformativeText("Are you holding the button (power off)?");
-            msgBox.setStandardButtons(QMessageBox::No | QMessageBox::Yes);
-            msgBox.setDefaultButton(QMessageBox::Yes);
-            int ret = msgBox.exec();
-            switch (ret) {
-                case QMessageBox::Yes:
-                    //if it was held we power off
-                    if (activeSession) {
-                        softOff();
-                    } else {
+            if (!activeSession) {
+                //ask or check whether the button was held for one second of just tapped
+                /*QMessageBox msgBox;
+                msgBox.setText("Power off or Selecting a Session?");
+                msgBox.setInformativeText("Are you holding the button (power off)?");
+                msgBox.setStandardButtons(QMessageBox::No | QMessageBox::Yes);
+                msgBox.setDefaultButton(QMessageBox::Yes);
+                int ret = msgBox.exec();
+                switch (ret) {
+                    case QMessageBox::Yes:
                         powerOff();
-                    }
-                    break;
-                case QMessageBox::No:
-                    //if it was tapped then we soft off
-                    out << "Selecting a session" << endl;
-                    sessionSelect = true;
+                        break;
+                    case QMessageBox::No:
+                        //if it was tapped then we soft off
+                        out << "Selecting a session" << endl;
+                        sessionSelect = true;
 
-                    break;
+                        break;
+                }*/
+                powerOff();
+            } else {
+                softOff();
             }
         } else {
             //if it is not
             out << "Powering on" << endl;
-            powerStatus = true;
             //initialize everything
+            powerStatus = true;
             strnum = 1; //default strength is 1 when machine is turned on
             toggleUI(true); //pass true to this function to initialize the UI
             //display battery level
+
             //set 2 minute timeout
             elapsed_timer.start();
             QTimer* timer = new QTimer(this);
@@ -109,10 +110,10 @@ void MainWindow::Power(){
 void MainWindow::timeout() {
     QTextStream out(stdout);
     if (elapsed_timer.elapsed() > 120000 && powerStatus) {
-        elapsed_timer.restart();
         if (activeSession) {
             out << "Session active no timeout necessary" << endl;
         } else {
+            elapsed_timer.restart();
             out << "No session selected before time out." << endl;
             powerOff();
         }
@@ -144,13 +145,20 @@ void MainWindow::powerOff() {
     out << "Powering off" << endl;
     toggleUI(false); //pass false to this function to set UI to off defaults
     powerStatus = false;
+    activeSession = false;
 }
 
 void MainWindow::softOff() {
     QTextStream out(stdout);
     out << "Soft off" << endl;
     //bring intensity down to 1 slowly
+    for (;strnum > 1; strnum--) {
+        sleep(1);
+        out << "Intensity: " << strnum << endl;
+
+    }
     //run powerOff() function
+    powerOff();
 }
 
 void MainWindow::on_rdbUserDes_toggled(bool checked)
@@ -165,11 +173,11 @@ void MainWindow::on_btnSelect_released()
     int ud = 0;
     int type = 0;
     if (ui->rdb20->isChecked()) {
-        group = 1;
+        group = 20;
     } else if (ui->rdb45->isChecked()) {
-        group = 2;
+        group = 45;
     } else if (ui->rdbUserDes->isChecked()){
-        group = 3;
+        group = ui->spbMinutes->value();;
         ud = ui->spbMinutes->value();
     }
     if (ui->rdbMET->isChecked()) {
@@ -187,9 +195,45 @@ void MainWindow::on_btnSelect_released()
         error.exec();
         return;
     }
-    out << "The session group is: " << group << endl;
-    out << "The session type is: " << type << endl;
-    if (ud != 0 || group == 3) {
-        out << "The user designated value is: " << ud << endl;
+
+    //set activeSession to true
+    activeSession = true;
+    switch (type) {
+    case 1:
+        out << "MET running for " << group << " minutes." << endl;
+        out << "0.5-3 Hz, short pulses." << endl;
+        break;
+    case 2:
+        out << "Sub-Delta running for " << group << " minutes." << endl;
+        out << "0.5-3 Hz, 50% duty cycle pulses" << endl;
+        break;
+    case 3:
+        out << "Delta running for " << group << " minutes." << endl;
+        out << "2.5-5 Hz" << endl;
+        break;
+    case 4:
+        out << "Theta running for " << group << " minutes." << endl;
+        out << "6-8 Hz" << endl;
+        break;
+    default:
+        break;
+    }
+    currentSessionMinutes = group;
+    elapsed_timer.restart();
+    ui->grpSession->setEnabled(false);
+    ui->grpTypes->setEnabled(false);
+    session_timer.start();
+    QTimer* stimer = new QTimer(this);
+    connect(stimer, SIGNAL(timeout()), this, SLOT(sessionTimeout()));
+    stimer->start(1000);
+
+}
+
+void MainWindow::sessionTimeout() {
+    QTextStream out(stdout);
+    if (session_timer.elapsed() > currentSessionMinutes * 60000 && activeSession && powerStatus) {
+        session_timer.restart();
+        out << "Session complete." << endl;
+        softOff();
     }
 }

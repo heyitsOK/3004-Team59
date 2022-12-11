@@ -24,8 +24,9 @@ private:
     bool powerStatus;
     int strnum;
     bool activeSession;
-    bool sessionSelect;
+    int currentSessionMinutes;
     QElapsedTimer elapsed_timer;
+    QElapsedTimer session_timer;
     void toggleUI(bool onOrOff);
 
 
@@ -36,6 +37,7 @@ private slots:
     void powerOff();
     void softOff();
     void timeout();
+    void sessionTimeout();
     void on_rdbUserDes_toggled(bool checked);
     void on_btnSelect_released();
 };
