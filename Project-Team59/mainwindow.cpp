@@ -47,9 +47,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->history, SIGNAL(cellClicked(int, int)), this, SLOT(Cclick(int, int)));
 
-    // Battery Status
-    connect(ui->horizontalSlider, SIGNAL(valueChanged(int)),
-            ui->progressBar, SLOT(setValue(int)));
+    // setting battery warning to invisible and initializing battery and timer
+    ui->warning->setVisible(false);
+    battery = 100.0;
+    battery_timer = new QTimer(this);
+    connect(battery_timer, SIGNAL(timeout()), this, SLOT(updateBattery()));
 
 }
 
@@ -169,27 +171,11 @@ void MainWindow::Power(){
             //if power is on already
             if (!activeSession) {
                 //ask or check whether the button was held for one second of just tapped
-                /*QMessageBox msgBox;
-                msgBox.setText("Power off or Selecting a Session?");
-                msgBox.setInformativeText("Are you holding the button (power off)?");
-                msgBox.setStandardButtons(QMessageBox::No | QMessageBox::Yes);
-                msgBox.setDefaultButton(QMessageBox::Yes);
-                int ret = msgBox.exec();
-                switch (ret) {
-                    case QMessageBox::Yes:
-                        powerOff();
-                        break;
-                    case QMessageBox::No:
-                        //if it was tapped then we soft off
-                        out << "Selecting a session" << endl;
-                        sessionSelect = true;
-
-                        break;
-                }*/
                 powerOff();
             } else {
                 softOff();
             }
+            battery_timer->stop();
         } else {
             //if it is not
             out << "Powering on" << endl;
@@ -202,6 +188,7 @@ void MainWindow::Power(){
             QTimer* timer = new QTimer(this);
             connect(timer, SIGNAL(timeout()), this, SLOT(timeout()));
             timer->start(1000);
+            battery_timer->start(1000);
         }
 }
 
@@ -228,6 +215,7 @@ void MainWindow::toggleUI(bool onOrOff) {
         ui->grpTypes->setEnabled(true);
         ui->Up->setEnabled(true);
         ui->Down->setEnabled(true);
+        ui->history->setEnabled(true);
     } else {
         ui->Strength->display(0);
         ui->Power->setStyleSheet("");
@@ -235,6 +223,7 @@ void MainWindow::toggleUI(bool onOrOff) {
         ui->grpTypes->setEnabled(false);
         ui->Up->setEnabled(false);
         ui->Down->setEnabled(false);
+        ui->history->setEnabled(false);
     }
 }
 
@@ -370,33 +359,29 @@ void MainWindow::sessionTimeout() {
     }
 }
 
-void MainWindow::on_progressBar_valueChanged(int value)
-{
-    if(value <= 0) {
-        ui->Power->setEnabled(false);
-        ui->grpTypes->setEnabled(false);
-        ui->grpSession->setEnabled(false);
-        ui->Up->setEnabled(false);
-        ui->Down->setEnabled(false);
-        ui->Strength->setEnabled(false);
-        ui->groups->setEnabled(false);
-    }
-    else if(value >= 1 && value <= 100) {
-        ui->Power->setEnabled(true);
-        //ui->grpTypes->setEnabled(true);
-        //ui->grpSession->setEnabled(true);
-        //ui->Up->setEnabled(true);
-        //ui->Down->setEnabled(true);
-        //ui->Strength->setEnabled(true);
-        //ui->groups->setEnabled(true);
-    }
-
-    if(value >= 1 && value <= 10) {
-       // QMessageBox::information(this, "Warning", "Battery Low", QMessageBox::Ok);
+void MainWindow::updateBattery() {
+    QTextStream out(stdout);
+    //out << "Battery updating" << endl;
+    if (battery == 0) {
+        if (activeSession) {
+            softOff();
+        } else {
+            powerOff();
+        }
+    } else if (battery <= 10) {
         ui->warning->setVisible(true);
-
-    }
-    else {
+    } else {
         ui->warning->setVisible(false);
     }
+    //calculate how much battery was used based on whether ativeSession = true and intensity level
+    double change = 0.028;
+    if (activeSession) {
+        change = change * 2 + (strnum * 0.01);
+    }
+    //update battery variable
+    battery = battery - change;
+    //update the GUI with the new battery
+    ui->progressBar->setValue(int(battery));
+
 }
+

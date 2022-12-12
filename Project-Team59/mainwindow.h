@@ -28,10 +28,12 @@ private:
     int battery_num;
     int currvalue;
     int row;
+    double battery;
     QElapsedTimer elapsed_timer;
     QElapsedTimer session_timer;
     QStringList header;
     QTimer *cdnum;
+    QTimer *battery_timer;
     int g2;
     int c2;
     int s2;
@@ -52,7 +54,7 @@ private slots:
     int gischecked();
     void cd_num();
     int cdTimeOut();
-    void on_progressBar_valueChanged(int value);
+    void updateBattery();
     void history(int g, int c, int s);
     void Cclick(int rw, int col);
 };
