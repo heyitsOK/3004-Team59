@@ -65,18 +65,20 @@ void MainWindow::cd_num()
 
 int MainWindow::cdTimeOut()
 {
+    QTextStream out(stdout);
     if(currvalue > 1)
     {
         currvalue = currvalue - 1;
-        qDebug() << currvalue << endl;
+        out << currvalue << endl;
         return currvalue;
     }else {
-        qDebug("it will start...");
+        out << "Session starting..." << endl;
         cdnum->stop();
     }
 }
 
 int MainWindow::goUp() {
+    QTextStream out(stdout);
     if (!powerStatus) {
         return 0;
     }
@@ -84,7 +86,7 @@ int MainWindow::goUp() {
     {
         if(strnum == 0 )
         {
-            qDebug("Please chose the group firstly");
+            out << "Please choose the group first" << endl;
             return 0;
         }
         strnum = strnum + 1;
@@ -98,6 +100,7 @@ int MainWindow::goUp() {
 }
 
 int MainWindow::goDown() {
+    QTextStream out(stdout);
     if (!powerStatus) {
         return 0;
     }
@@ -115,7 +118,7 @@ int MainWindow::goDown() {
     }
     else
     {
-        qDebug("Please chose the group firstly");
+        out << "Please choose the group first" << endl;
         return 0;
     }
 }
@@ -266,7 +269,7 @@ void MainWindow::on_btnSelect_released()
     }
 
     if (group != 0 || type != 0) {
-        qDebug("It will start after 5 seconds...");
+        out << "Session starting after 5 seconds..." << endl;
     }
 
 
