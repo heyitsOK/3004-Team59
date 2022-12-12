@@ -28,7 +28,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->Power, SIGNAL(pressed()), this, SLOT(Power()));
 
-    connect(ui->btnSelect, &QPushButton::clicked, this, &MainWindow::cd_num);
     cdnum = new QTimer(this);
     cdnum->setInterval(1000);
     currvalue = 6;
@@ -38,6 +37,15 @@ MainWindow::MainWindow(QWidget *parent)
     activeSession = false;
     toggleUI(false);
 
+    row = 1;
+    ui->history->setColumnCount(4);
+    ui->history->setRowCount(row);
+    QStringList header;
+    header << "Time" << "Group" << "Session" << "Strength";
+    ui->history->verticalHeader()->setVisible(false);
+    ui->history->setHorizontalHeaderLabels(header);
+
+    connect(ui->history, SIGNAL(cellClicked(int, int)), this, SLOT(Cclick(int, int)));
 
     // Battery Status
     connect(ui->horizontalSlider, SIGNAL(valueChanged(int)),
@@ -65,6 +73,28 @@ int MainWindow::gischecked()
         return strnum;
     }
 }
+
+void MainWindow::history(int g, int c, int s)
+{
+    ui->history->setItem((row-1),0, new QTableWidgetItem(QString("%1").arg(row)));
+    ui->history->setItem((row-1),1, new QTableWidgetItem(QString("%1").arg(g)));
+    ui->history->setItem((row-1),2, new QTableWidgetItem(QString("%1").arg(c)));
+    ui->history->setItem((row-1),3, new QTableWidgetItem(QString("%1").arg((s))));
+    row++;
+    ui->history->setRowCount(row);
+}
+
+
+void MainWindow::Cclick(int rw, int col)
+{
+    QTableWidgetItem *g1 = ui->history->item(rw, (col+1));
+    QTableWidgetItem *c1 = ui->history->item(rw, (col+2));
+    QTableWidgetItem *s1 = ui->history->item(rw, (col+3));
+    g2 = g1->text().toInt();
+    c2 = c1->text().toInt();
+    s2 = s1->text().toInt();
+}
+
 
 void MainWindow::cd_num()
 {
@@ -244,9 +274,15 @@ void MainWindow::on_rdbUserDes_toggled(bool checked)
 void MainWindow::on_btnSelect_released()
 {
     QTextStream out(stdout);
-    int group = 0;
+
+
     int ud = 0;
-    int type = 0;
+    int group = g2;
+    int type = c2;
+    if(s2 != 0)
+    {
+        strnum = s2;
+    }
 
     if (ui->rdb20->isChecked()) {
         group = 20;
@@ -277,10 +313,7 @@ void MainWindow::on_btnSelect_released()
         return;
     }
 
-    if (group != 0 || type != 0) {
-        out << "Session starting after 5 seconds..." << endl;
-    }
-
+    qDebug() << "Session starting after 5 seconds...";
 
     //set activeSession to true
     activeSession = true;
@@ -289,21 +322,29 @@ void MainWindow::on_btnSelect_released()
         out << "MET running for " << group << " minutes." << endl;
         out << "0.5-3 Hz, short pulses." << endl;
         out << "The strength is: " << strnum << endl;
+        history(group, 1, strnum);
+        cd_num();
         break;
     case 2:
         out << "Sub-Delta running for " << group << " minutes." << endl;
         out << "0.5-3 Hz, 50% duty cycle pulses" << endl;
         out << "The strength is: " << strnum << endl;
+        history(group, 1, strnum);
+        cd_num();
         break;
     case 3:
         out << "Delta running for " << group << " minutes." << endl;
         out << "2.5-5 Hz" << endl;
         out << "The strength is: " << strnum << endl;
+        history(group, 1, strnum);
+        cd_num();
         break;
     case 4:
         out << "Theta running for " << group << " minutes." << endl;
         out << "6-8 Hz" << endl;
         out << "The strength is: " << strnum << endl;
+        history(group, 1, strnum);
+        cd_num();
         break;
     default:
         break;
@@ -322,7 +363,7 @@ void MainWindow::on_btnSelect_released()
 
 void MainWindow::sessionTimeout() {
     QTextStream out(stdout);
-    if (session_timer.elapsed() > currentSessionMinutes * 60000 && activeSession && powerStatus) {
+    if (session_timer.elapsed() > currentSessionMinutes * 600 && activeSession && powerStatus) {
         session_timer.restart();
         out << "Session complete." << endl;
         softOff();

@@ -27,9 +27,14 @@ private:
     int currentSessionMinutes;
     int battery_num;
     int currvalue;
+    int row;
     QElapsedTimer elapsed_timer;
     QElapsedTimer session_timer;
+    QStringList header;
     QTimer *cdnum;
+    int g2;
+    int c2;
+    int s2;
     void toggleUI(bool onOrOff);
     void OperationTime(int T);
     void group_show(int G);
@@ -48,5 +53,7 @@ private slots:
     void cd_num();
     int cdTimeOut();
     void on_progressBar_valueChanged(int value);
+    void history(int g, int c, int s);
+    void Cclick(int rw, int col);
 };
 #endif // MAINWINDOW_H
