@@ -1,8 +1,6 @@
 # COMP 3004 - Team 59
 # Table of Contents 
 - [Team Members](#Team-Members) 
-- [Updates and Comments](#Updates-and-Comments) 
-- [TODO](#TO-DO) 
 - [Team's Work](#Documentation) 
   * [Documentation Responsibilities](#Documentation-responsibilities)
   * [Implementation Responsibilities](#Implementation)
@@ -18,20 +16,6 @@
 | Haochen Hou  | 101077553  |
 | Ishwor Ghimire  | 101211820 | 
 | Janessa Orhiobhe  | 101201685  |
-
-## <a name = "Updates-and-Comments" ></a>Updates and Comments
-Osamah:
-  - Fixing and updating README.md
-  - Creating GUI
-
-## <a name = "TO-DO" ></a> TODO
-* [x] Set up GitHub for everyone
-* [ ] use case model
-* [ ] UML class diagram
-* [ ] sequence diagram
-* [x] GUI
-* [ ] Implementation
-* [ ] traceability matrix
 
 ## <a name = "Documentation-responsibilities" ></a>Documentation Responsibilities
 - <a name = "Documentation" ></a>Documentation:
