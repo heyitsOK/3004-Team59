@@ -173,8 +173,8 @@
    <widget class="QGroupBox" name="grpTypes">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>60</y>
+      <x>420</x>
+      <y>120</y>
       <width>301</width>
       <height>211</height>
      </rect>
@@ -285,6 +285,28 @@
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="warning">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>70</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>Battery Low</string>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
     </property>
    </widget>
   </widget>

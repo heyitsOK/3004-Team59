@@ -7,6 +7,9 @@
 #include <unistd.h>
 #include <QElapsedTimer>
 
+#include <QProgressBar>
+#include <QMessageBox>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -335,12 +338,24 @@ void MainWindow::on_progressBar_valueChanged(int value)
         ui->Up->setEnabled(false);
         ui->Down->setEnabled(false);
         ui->Strength->setEnabled(false);
+        ui->groups->setEnabled(false);
     }
     else if(value >= 1 && value <= 100) {
         ui->Power->setEnabled(true);
+        //ui->grpTypes->setEnabled(true);
+        //ui->grpSession->setEnabled(true);
+        //ui->Up->setEnabled(true);
+        //ui->Down->setEnabled(true);
+        //ui->Strength->setEnabled(true);
+        //ui->groups->setEnabled(true);
     }
 
-    if(value <= 10) {
-        QMessageBox::information(this, "Warning", "Battery Low", QMessageBox::Ok);
+    if(value >= 1 && value <= 10) {
+       // QMessageBox::information(this, "Warning", "Battery Low", QMessageBox::Ok);
+        ui->warning->setVisible(true);
+
+    }
+    else {
+        ui->warning->setVisible(false);
     }
 }
