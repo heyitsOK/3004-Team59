@@ -34,6 +34,12 @@ MainWindow::MainWindow(QWidget *parent)
     powerStatus = false; //the default power status is false because the power is off when the program starts
     activeSession = false;
     toggleUI(false);
+
+
+    // Battery Status
+    connect(ui->horizontalSlider, SIGNAL(valueChanged(int)),
+            ui->progressBar, SLOT(setValue(int)));
+
 }
 
 MainWindow::~MainWindow()
@@ -317,5 +323,24 @@ void MainWindow::sessionTimeout() {
         session_timer.restart();
         out << "Session complete." << endl;
         softOff();
+    }
+}
+
+void MainWindow::on_progressBar_valueChanged(int value)
+{
+    if(value <= 0) {
+        ui->Power->setEnabled(false);
+        ui->grpTypes->setEnabled(false);
+        ui->grpSession->setEnabled(false);
+        ui->Up->setEnabled(false);
+        ui->Down->setEnabled(false);
+        ui->Strength->setEnabled(false);
+    }
+    else if(value >= 1 && value <= 100) {
+        ui->Power->setEnabled(true);
+    }
+
+    if(value <= 10) {
+        QMessageBox::information(this, "Warning", "Battery Low", QMessageBox::Ok);
     }
 }

@@ -47,5 +47,6 @@ private slots:
     int gischecked();
     void cd_num();
     int cdTimeOut();
+    void on_progressBar_valueChanged(int value);
 };
 #endif // MAINWINDOW_H
