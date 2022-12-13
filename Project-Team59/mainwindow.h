@@ -6,6 +6,10 @@
 #include <QString>
 #include <QPushButton>
 #include <QElapsedTimer>
+#include <QTimer>
+#include <QList>
+#include "session.h"
+#include "user.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,28 +26,30 @@ public:
 private:
     Ui::MainWindow *ui;
     bool powerStatus;
-    int strnum;
     bool activeSession;
+    int strnum;
     int currentSessionMinutes;
-    int battery_num;
+    int currentSessionType;
     int currvalue;
-    int row;
+    int connection;
     double battery;
     QElapsedTimer elapsed_timer;
     QElapsedTimer session_timer;
     QStringList header;
     QTimer *cdnum;
     QTimer *battery_timer;
-    int g2;
-    int c2;
-    int s2;
+    //QList<Session *> sessions;
+    User alice;
+    User bob;
+    User *currentUser;
     void toggleUI(bool onOrOff);
     void OperationTime(int T);
-    void group_show(int G);
+    void connectionTest();
 
 private slots:
     int goUp();
     int goDown();
+    int cdTimeOut();
     void Power();
     void powerOff();
     void softOff();
@@ -51,11 +57,17 @@ private slots:
     void sessionTimeout();
     void on_rdbUserDes_toggled(bool checked);
     void on_btnSelect_released();
-    int gischecked();
-    void cd_num();
-    int cdTimeOut();
     void updateBattery();
-    void history(int g, int c, int s);
-    void Cclick(int rw, int col);
+    void on_btnRecord_released();
+    void on_btnReplay_released();
+    //simulation menu action slots
+    void on_actionGood_triggered();
+    void on_actionOK_triggered();
+    void on_actionBad_triggered();
+    void on_actionBattery_Full_triggered();
+    void on_actionBattery_Low_triggered();
+    void on_actionBattery_End_triggered();
+    void on_actionAlice_triggered();
+    void on_actionBob_triggered();
 };
 #endif // MAINWINDOW_H

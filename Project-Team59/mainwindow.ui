@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>782</width>
-    <height>649</height>
+    <height>519</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
       <x>20</x>
       <y>40</y>
       <width>361</width>
-      <height>551</height>
+      <height>421</height>
      </rect>
     </property>
    </widget>
@@ -30,15 +30,15 @@
       <x>400</x>
       <y>40</y>
       <width>361</width>
-      <height>551</height>
+      <height>421</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="Power">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>480</y>
+      <x>600</x>
+      <y>330</y>
       <width>121</width>
       <height>71</height>
      </rect>
@@ -53,18 +53,18 @@
    <widget class="QLCDNumber" name="Strength">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>310</y>
-      <width>151</width>
-      <height>91</height>
+      <x>70</x>
+      <y>300</y>
+      <width>261</width>
+      <height>131</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="Up">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>320</y>
+      <x>100</x>
+      <y>330</y>
       <width>80</width>
       <height>25</height>
      </rect>
@@ -76,24 +76,14 @@
    <widget class="QPushButton" name="Down">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>360</y>
+      <x>100</x>
+      <y>380</y>
       <width>80</width>
       <height>25</height>
      </rect>
     </property>
     <property name="text">
      <string>Down</string>
-    </property>
-   </widget>
-   <widget class="QLCDNumber" name="groups">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>450</y>
-      <width>291</width>
-      <height>91</height>
-     </rect>
     </property>
    </widget>
    <widget class="QGroupBox" name="grpSession">
@@ -126,6 +116,9 @@
      <property name="text">
       <string>20 Minutes</string>
      </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
     </widget>
     <widget class="QRadioButton" name="rdb45">
      <property name="geometry">
@@ -139,6 +132,9 @@
      <property name="text">
       <string>45 Minutes</string>
      </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
     </widget>
     <widget class="QRadioButton" name="rdbUserDes">
      <property name="geometry">
@@ -151,6 +147,9 @@
      </property>
      <property name="text">
       <string>User Desgnated:</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QSpinBox" name="spbMinutes">
@@ -296,14 +295,59 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QTableWidget" name="history">
+   <widget class="QPushButton" name="btnRecord">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>310</y>
-      <width>341</width>
-      <height>121</height>
+      <x>560</x>
+      <y>10</y>
+      <width>80</width>
+      <height>25</height>
      </rect>
+    </property>
+    <property name="text">
+     <string>Record</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnReplay">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>10</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Replay</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblConnection">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>290</y>
+      <width>71</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Connection</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblStatus">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>290</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(136, 138, 133);</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
@@ -316,8 +360,80 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuSimulate">
+    <property name="title">
+     <string>Simulate</string>
+    </property>
+    <widget class="QMenu" name="menuSet_connection">
+     <property name="title">
+      <string>Set connection</string>
+     </property>
+     <addaction name="actionGood"/>
+     <addaction name="actionOK"/>
+     <addaction name="actionBad"/>
+    </widget>
+    <widget class="QMenu" name="menuBattery">
+     <property name="title">
+      <string>Battery</string>
+     </property>
+     <addaction name="actionBattery_Full"/>
+     <addaction name="actionBattery_Low"/>
+     <addaction name="actionBattery_End"/>
+    </widget>
+    <widget class="QMenu" name="menuChange_User">
+     <property name="title">
+      <string>Change User</string>
+     </property>
+     <addaction name="actionAlice"/>
+     <addaction name="actionBob"/>
+    </widget>
+    <addaction name="menuSet_connection"/>
+    <addaction name="menuBattery"/>
+    <addaction name="menuChange_User"/>
+   </widget>
+   <addaction name="menuSimulate"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionGood">
+   <property name="text">
+    <string>Good</string>
+   </property>
+  </action>
+  <action name="actionOK">
+   <property name="text">
+    <string>OK</string>
+   </property>
+  </action>
+  <action name="actionBad">
+   <property name="text">
+    <string>Bad</string>
+   </property>
+  </action>
+  <action name="actionBattery_Full">
+   <property name="text">
+    <string>Battery Full</string>
+   </property>
+  </action>
+  <action name="actionBattery_Low">
+   <property name="text">
+    <string>Battery Low</string>
+   </property>
+  </action>
+  <action name="actionBattery_End">
+   <property name="text">
+    <string>Battery End</string>
+   </property>
+  </action>
+  <action name="actionAlice">
+   <property name="text">
+    <string>Alice</string>
+   </property>
+  </action>
+  <action name="actionBob">
+   <property name="text">
+    <string>Bob</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
