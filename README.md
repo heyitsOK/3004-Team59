@@ -1,8 +1,6 @@
 # COMP 3004 - Team 59
 # Table of Contents 
 - [Team Members](#Team-Members) 
-- [Updates and Comments](#Updates-and-Comments) 
-- [TODO](#TO-DO) 
 - [Team's Work](#Documentation) 
   * [Documentation Responsibilities](#Documentation-responsibilities)
   * [Implementation Responsibilities](#Implementation)
