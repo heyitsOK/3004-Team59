@@ -36,22 +36,22 @@
 - <a name = "Implementation" ></a> Implementation:
   
   `Power`
-    - Omar
-    - Osamah
+  - Omar
+  - Osamah
   `Battery`
-    - Osamah
-    - Ishwor
+  - Osamah
+  - - Ishwor
   `Selecting a session`
-    - Omar
+  - Omar
   `Connection test`
-    - Jenessa
+  - Jenessa
   `Intensity`
-    - Haochen
+  - Haochen
   `record and replay`
-    - Haochen
-    - Omar
+  - Haochen
+  - Omar
    `GUI`
-    - Osamah
+   - Osamah
   
 ## <a name = "h-Files" ></a>.h Files
 - Header 
