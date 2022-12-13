@@ -17,28 +17,7 @@
 | Ishwor Ghimire  | 101211820 | 
 | Janessa Orhiobhe  | 101201685  |
 
-## <a name = "Updates-and-Comments" ></a>Updates and Comments
-Osamah:
-  - Fixing and updating README.md
-  - Creating GUI
-
-Omar:
-  - Implemented power on/off, and soft on/off feature
-  - Set session timeout when not in an active session
-  
-janessa:
-- implement connection testing
-
-## <a name = "TO-DO" ></a> TODO
-* [x] Set up GitHub for everyone
-* [ ] use case model
-* [ ] UML class diagram
-* [ ] sequence diagram
-* [x] GUI
-* [ ] Implementation
-* [ ] traceability matrix
-
-## <a name = "Documentation-responsibilities" ></a>Documentation Responsibilities
+## <a name = "Documentation-responsibilities" ></a>Responsibilities
 - <a name = "Documentation" ></a>Documentation:
 
   `use case model`
@@ -52,18 +31,40 @@ janessa:
 
   `traceability matrix` 
     - haochen, osamah
-    
+  `README`
+    - Osamah
 - <a name = "Implementation" ></a> Implementation:
   
-  `GUI`
+  `Power`
+    - Omar
     - Osamah
-
+  `Battery`
+    - Osamah
+    - Ishwor
+  `Selecting a session`
+    - Omar
+  `Connection test`
+    - Jenessa
+  `Intensity`
+    - Haochen
+  `record and replay`
+    - Haochen
+    - Omar
+   `GUI`
+    - Osamah
+  
 ## <a name = "h-Files" ></a>.h Files
+- Header 
  - mainwindow.h
+ - session.h
+ - user.h
 
 ## <a name = "cpp-Files" ></a>.cpp Files
+- Souces 
  - main.cpp
  - mainwindow.cpp
+ - session.cpp
+ - user.cpp
 
 ## <a name = "Documentation files" ></a>Documentation Files
 
