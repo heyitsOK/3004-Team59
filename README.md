@@ -61,17 +61,17 @@
    - Osamah
   
 ## <a name = "h-Files" ></a>.h Files
-- Header 
- + mainwindow.h
- + session.h
- + user.h
+- Header
+ * mainwindow.h
+ * session.h
+ * user.h
 
 ## <a name = "cpp-Files" ></a>.cpp Files
 - Souces 
- - main.cpp
- - mainwindow.cpp
- - session.cpp
- - user.cpp
+ * main.cpp
+ * mainwindow.cpp
+ * session.cpp
+ * user.cpp
 
 ## <a name = "Documentation files" ></a>Documentation Files
 
