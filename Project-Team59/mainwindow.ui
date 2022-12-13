@@ -6,21 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>782</width>
+    <height>519</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QListWidget" name="listWidget">
+   <widget class="QListWidget" name="group_check">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>10</y>
+      <y>40</y>
       <width>361</width>
-      <height>551</height>
+      <height>421</height>
      </rect>
     </property>
    </widget>
@@ -28,20 +28,23 @@
     <property name="geometry">
      <rect>
       <x>400</x>
-      <y>10</y>
+      <y>40</y>
       <width>361</width>
-      <height>551</height>
+      <height>421</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="Power">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>410</y>
+      <x>600</x>
+      <y>330</y>
       <width>121</width>
       <height>71</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>Power</string>
@@ -50,18 +53,18 @@
    <widget class="QLCDNumber" name="Strength">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>440</y>
-      <width>151</width>
-      <height>91</height>
+      <x>70</x>
+      <y>300</y>
+      <width>261</width>
+      <height>131</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="Up">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>440</y>
+      <x>100</x>
+      <y>330</y>
       <width>80</width>
       <height>25</height>
      </rect>
@@ -73,8 +76,8 @@
    <widget class="QPushButton" name="Down">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>500</y>
+      <x>100</x>
+      <y>380</y>
       <width>80</width>
       <height>25</height>
      </rect>
@@ -83,170 +86,268 @@
      <string>Down</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="min20">
+   <widget class="QGroupBox" name="grpSession">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>70</x>
+      <y>70</y>
+      <width>261</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Session Groups</string>
+    </property>
+    <widget class="QRadioButton" name="rdb20">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>40</y>
+       <width>96</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>20 Minutes</string>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="rdb45">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>80</y>
+       <width>96</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>45 Minutes</string>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="rdbUserDes">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>120</y>
+       <width>121</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>User Desgnated:</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="spbMinutes">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>120</y>
+       <width>45</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>180</number>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="grpTypes">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
       <y>60</y>
-      <width>80</width>
-      <height>25</height>
+      <width>301</width>
+      <height>211</height>
      </rect>
     </property>
-    <property name="text">
-     <string>20 min</string>
+    <property name="title">
+     <string>Session Types</string>
     </property>
+    <widget class="QRadioButton" name="rdbMET">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>40</y>
+       <width>151</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>1-MET</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="rdbSubDelta">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>70</y>
+       <width>171</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>2-Sub-Delta</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="rdbDelta">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>100</y>
+       <width>61</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>3-Delta</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="rdbTheta">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>130</y>
+       <width>96</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>4-Theta</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnSelect">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>170</y>
+       <width>80</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Select</string>
+     </property>
+    </widget>
    </widget>
-   <widget class="QPushButton" name="Min45">
+   <widget class="QProgressBar" name="progressBar">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>110</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>45 min</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="hrs3">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>160</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>3 hrs</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="UD">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>220</y>
-      <width>221</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>User designed</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="MET">
-    <property name="geometry">
-     <rect>
-      <x>420</x>
-      <y>110</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>MET</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="theta">
-    <property name="geometry">
-     <rect>
-      <x>600</x>
-      <y>250</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Theta</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="SD">
-    <property name="geometry">
-     <rect>
-      <x>540</x>
-      <y>110</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>SD</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Beta2">
-    <property name="geometry">
-     <rect>
-      <x>660</x>
-      <y>190</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Beta 2</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Beta1">
-    <property name="geometry">
-     <rect>
-      <x>540</x>
-      <y>190</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Beta 1</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Alpha">
-    <property name="geometry">
-     <rect>
-      <x>420</x>
-      <y>190</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Alpha</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Hz1000">
-    <property name="geometry">
-     <rect>
-      <x>480</x>
-      <y>250</y>
-      <width>81</width>
+      <x>120</x>
+      <y>10</y>
+      <width>91</width>
       <height>21</height>
      </rect>
     </property>
-    <property name="text">
-     <string>1000 Hz</string>
+    <property name="value">
+     <number>100</number>
     </property>
    </widget>
-   <widget class="QLCDNumber" name="lcdNumber_2">
+   <widget class="QLabel" name="batteryStatus">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>300</y>
-      <width>291</width>
-      <height>91</height>
+      <x>30</x>
+      <y>10</y>
+      <width>81</width>
+      <height>20</height>
      </rect>
     </property>
+    <property name="text">
+     <string>Battery Status</string>
+    </property>
    </widget>
-   <widget class="QPushButton" name="delta">
+   <widget class="QLabel" name="warning">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>10</y>
+      <width>71</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>Battery Low</string>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnRecord">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>10</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Record</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnReplay">
     <property name="geometry">
      <rect>
       <x>650</x>
-      <y>110</y>
-      <width>81</width>
-      <height>21</height>
+      <y>10</y>
+      <width>80</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="text">
-     <string>Delta</string>
+     <string>Replay</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblConnection">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>290</y>
+      <width>71</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Connection</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblStatus">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>290</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(136, 138, 133);</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
@@ -255,12 +356,84 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>782</width>
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuSimulate">
+    <property name="title">
+     <string>Simulate</string>
+    </property>
+    <widget class="QMenu" name="menuSet_connection">
+     <property name="title">
+      <string>Set connection</string>
+     </property>
+     <addaction name="actionGood"/>
+     <addaction name="actionOK"/>
+     <addaction name="actionBad"/>
+    </widget>
+    <widget class="QMenu" name="menuBattery">
+     <property name="title">
+      <string>Battery</string>
+     </property>
+     <addaction name="actionBattery_Full"/>
+     <addaction name="actionBattery_Low"/>
+     <addaction name="actionBattery_End"/>
+    </widget>
+    <widget class="QMenu" name="menuChange_User">
+     <property name="title">
+      <string>Change User</string>
+     </property>
+     <addaction name="actionAlice"/>
+     <addaction name="actionBob"/>
+    </widget>
+    <addaction name="menuSet_connection"/>
+    <addaction name="menuBattery"/>
+    <addaction name="menuChange_User"/>
+   </widget>
+   <addaction name="menuSimulate"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionGood">
+   <property name="text">
+    <string>Good</string>
+   </property>
+  </action>
+  <action name="actionOK">
+   <property name="text">
+    <string>OK</string>
+   </property>
+  </action>
+  <action name="actionBad">
+   <property name="text">
+    <string>Bad</string>
+   </property>
+  </action>
+  <action name="actionBattery_Full">
+   <property name="text">
+    <string>Battery Full</string>
+   </property>
+  </action>
+  <action name="actionBattery_Low">
+   <property name="text">
+    <string>Battery Low</string>
+   </property>
+  </action>
+  <action name="actionBattery_End">
+   <property name="text">
+    <string>Battery End</string>
+   </property>
+  </action>
+  <action name="actionAlice">
+   <property name="text">
+    <string>Alice</string>
+   </property>
+  </action>
+  <action name="actionBob">
+   <property name="text">
+    <string>Bob</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
