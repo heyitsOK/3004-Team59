@@ -59,7 +59,7 @@
   `GUI`
      - Osamah
   
-## <a name = "h-Files" ></a>.h Files
+## <a name = "h-Files" ></a>.h and .ui Files
 - Header
    * mainwindow.h
    * session.h
