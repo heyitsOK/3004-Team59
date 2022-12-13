@@ -25,8 +25,10 @@ Osamah:
 Omar:
   - Implemented power on/off, and soft on/off feature
   - Set session timeout when not in an active session
+  
 janessa:
 - implement connection testing
+
 ## <a name = "TO-DO" ></a> TODO
 * [x] Set up GitHub for everyone
 * [ ] use case model
