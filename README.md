@@ -31,6 +31,7 @@
 
   `traceability matrix` 
     - haochen, osamah
+  
   `README`
     - Osamah
 - <a name = "Implementation" ></a> Implementation:
@@ -38,19 +39,25 @@
   `Power`
   - Omar
   - Osamah
+  
   `Battery`
   - Osamah
-  - - Ishwor
+  - Ishwor
+  
   `Selecting a session`
   - Omar
+  
   `Connection test`
   - Jenessa
+  
   `Intensity`
   - Haochen
+  
   `record and replay`
   - Haochen
   - Omar
-   `GUI`
+  
+  `GUI`
    - Osamah
   
 ## <a name = "h-Files" ></a>.h Files
