@@ -75,3 +75,11 @@
    * user.cpp
  
 ## <a name = "Test-Scenario" ></a>Tested scenarios
+  `Works`
+     - Power on/off
+     - Soft on/off
+     - Battery depletion/Battery warnings
+     - Connection test (good, ok, and bad connection)
+     - Different users
+     - Record/Replay with different users
+     - Selecting a session 
