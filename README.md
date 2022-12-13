@@ -65,6 +65,8 @@
    * mainwindow.h
    * session.h
    * user.h
+- Forms
+   * mainwindow.ui
 
 ## <a name = "cpp-Files" ></a>.cpp Files
 - Souces
