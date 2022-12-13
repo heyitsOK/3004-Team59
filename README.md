@@ -62,9 +62,9 @@
   
 ## <a name = "h-Files" ></a>.h Files
 - Header 
- - mainwindow.h
- - session.h
- - user.h
+ + mainwindow.h
+ + session.h
+ + user.h
 
 ## <a name = "cpp-Files" ></a>.cpp Files
 - Souces 
