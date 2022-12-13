@@ -6,7 +6,6 @@
   * [Implementation Responsibilities](#Implementation)
 - [.h Files](#h-Files) 
 - [.cpp Files](#cpp-Files)
-- [Documentation Files](#Documentation-files) 
 - [Test Scenario](#Test-Scenario) 
 ## <a name = "Team-Members" ></a>Team Members
 | Student name  | ID number |
@@ -74,7 +73,5 @@
    * mainwindow.cpp
    * session.cpp
    * user.cpp
-
-## <a name = "Documentation files" ></a>Documentation Files
-
+ 
 ## <a name = "Test-Scenario" ></a>Tested scenarios
