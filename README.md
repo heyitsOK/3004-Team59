@@ -1,6 +1,7 @@
 # COMP 3004 - Team 59
 # Introduction
 This project was developed as the final assessment in the COMP3004 Object Oriented Software Engineering course. I will provide the introduction below for the context of the project was developed for:
+
 Raven Microcurrent Biofeedback Inc. (RMB), a manufacturer of a variety of microcurrent
 biofeedback devices, has hired you to build them a software-based prototype of a device they
 are planning to add to their product line. RMB intends to use this prototype to explore different
